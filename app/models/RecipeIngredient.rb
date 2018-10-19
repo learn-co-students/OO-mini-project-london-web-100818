@@ -1,6 +1,5 @@
 class RecipeIngredient
     attr_accessor :recipe, :ingredient
-
     @@all = []
 
     def initialize(recipe, ingredient)
@@ -12,4 +11,5 @@ class RecipeIngredient
     def self.all
         @@all
     end
+    
 end

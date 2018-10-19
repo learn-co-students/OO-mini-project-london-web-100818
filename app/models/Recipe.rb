@@ -1,6 +1,5 @@
 class Recipe
     attr_accessor :name
-
     @@all = []
 
     def initialize(name)
@@ -13,20 +12,20 @@ class Recipe
     end
 
     def recipe_cards
-        # return user instances RecipeCards.all
         RecipeCard.all.select {|rc|
           rc.recipe == self
         }
     end
 
     def users
-      recipe_cards.map { |card|
-        card.user
-      }
+      recipe_cards.map { |card|  card.user}
+    end
+
+    def user_count
+      users.length
     end
 
     def recipe_ingredients
-        # return ingredients of that recipe
         RecipeIngredient.all.select { |ri| ri.recipe == self }
     end
 
@@ -39,22 +38,20 @@ class Recipe
     end
 
     def allergens
-        #reurns an array of recipes that the user is not allergic to
-        ingredients.each { |i|
-            allergen_ingredients.map { |ing|
-                if i == ing
-                    i
-                end
-            }
-        }.uniq
+      Allergen.all
+        .select { |a| (ingredients & allergen_ingredients)
+        .include?(a.ingredient)}
+        .map{|a| a.ingredient}.uniq
     end
 
     def self.all
         @@all
     end
 
+
     def self.most_popular
-        # return recipe with highest number of users
+        most = self.all.max_by {|recipe| recipe.user_count}
+        self.all.select { |recipe| recipe.user_count == most.user_count }
     end
 
 end

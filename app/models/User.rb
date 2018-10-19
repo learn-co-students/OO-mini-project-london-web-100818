@@ -1,6 +1,5 @@
 class User
     attr_accessor :name
-
     @@all = []
 
     def initialize(name)
@@ -33,30 +32,26 @@ class User
     end
 
     def most_recent_recipe
-        # return most recent added recipe
         recipes[-1]
     end
 
     def allergen_ingredients
-        allergens.map{ |allergen| allergen.ingredient} #array
+        allergens.map{ |allergen| allergen.ingredient}
     end
 
     def ingredients
-
+      RecipeIngredient.all.map{|ri| ri.ingredient}
     end
 
     def unsafe_recipes
-        #reurns an array of recipes that the user is not allergic to
-
-        allergen_ingredients.each { |ing|
-          RecipeIngredient.all.select { |ri|
-                ri.ingredient == ing
-            }
-        }
+      RecipeIngredient.all
+        .select {|ri| (ingredients & allergen_ingredients)
+        .include?(ri.ingredient)}
+        .map {|ri| ri.recipe}.uniq
     end
 
     def safe_recipes
-      Recipe.all - steven.unsafe_recipes
+      Recipe.all - self.unsafe_recipes
     end
 
     def self.all

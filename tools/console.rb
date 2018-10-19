@@ -23,6 +23,7 @@ s_pesto_pasta_recipe_card = steven.add_recipe_card(pesto_pasta, "10/10/18", 4)
 n_pepper_pine_recipe_card = natasha.add_recipe_card(pepper_pine, "09/10/18", 2)
 s_pepper_pine_recipe_card = steven.add_recipe_card(pepper_pine, "11/10/18", 3)
 s_caprese_recipe_card = steven.add_recipe_card(caprese, "15/10/18", 4)
+n_caprese_recipe_card = natasha.add_recipe_card(caprese, "15/10/18", 4)
 # ALLERGENS #
 natasha.declare_allergen(pine_nuts)
 steven.declare_allergen(pine_nuts)

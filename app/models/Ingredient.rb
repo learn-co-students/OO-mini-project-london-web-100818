@@ -1,6 +1,5 @@
 class Ingredient
     attr_accessor :name
-
     @@all = []
 
     def initialize(name)
@@ -13,15 +12,17 @@ class Ingredient
         a.ingredient == self
       }
     end
+
     def allergen_count
       allergens.size
     end
+
     def self.most_common_allergen
-        #returns most common allergen(highest number of users)
         self.all.max_by {|ing| ing.allergen_count}
     end
 
     def self.all
         @@all
     end
+
 end
