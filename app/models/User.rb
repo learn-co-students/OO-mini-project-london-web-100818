@@ -41,23 +41,25 @@ class User
         allergens.map{ |allergen| allergen.ingredient} #array
     end
 
+    def ingredients
+
+    end
+
     def unsafe_recipes
         #reurns an array of recipes that the user is not allergic to
-        RecipeIngredient.all.each { |recipe|
-            allergen_ingredients.map { |ing|
-                if recipe.ingredient == ing
-                    recipe.recipe
-                end
+
+        allergen_ingredients.each { |ing|
+          RecipeIngredient.all.select { |ri|
+                ri.ingredient == ing
             }
         }
     end
 
     def safe_recipes
-        Recipe.all.reject {|recipe| recipe == unsafe_recipes}
+      Recipe.all - steven.unsafe_recipes
     end
 
     def self.all
         @@all
     end
 end
-

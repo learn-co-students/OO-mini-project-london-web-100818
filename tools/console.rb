@@ -26,7 +26,8 @@ s_caprese_recipe_card = steven.add_recipe_card(caprese, "15/10/18", 4)
 # ALLERGENS #
 natasha.declare_allergen(pine_nuts)
 steven.declare_allergen(pine_nuts)
-steven.declare_allergen(peppers)
+natasha.declare_allergen(peppers)
+steven.declare_allergen(tomato)
 
 
 
